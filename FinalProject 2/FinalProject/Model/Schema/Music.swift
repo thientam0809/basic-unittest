@@ -16,6 +16,7 @@ final class Music: Mappable {
     var name: String = ""
     // MARK: - Initial
     init?(map: Map) { }
+    init() { }
 
     // MARK: - Mapping
     func mapping(map: Map) {

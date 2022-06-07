@@ -12,7 +12,7 @@ import MVVM
 final class HomeViewModel: ViewModel {
 
     // MARK: - Properties
-    private(set) var musics: [Music] = []
+    var musics: [Music] = []
 
     // MARK: - Methods
     func getData(completion: @escaping APICompletion) {
