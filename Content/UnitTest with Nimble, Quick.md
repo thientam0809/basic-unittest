@@ -13,6 +13,7 @@ Quick và Nimble cung cấp những chức năng tương tự viết test như X
 > Nói chung dùng cái nào cũng được , miễn test coverage 100% là được =)))
 
 ## Cài đặt thư viện
+
 <img width="547" alt="Screen Shot 2022-06-06 at 4 28 53 PM" src="https://user-images.githubusercontent.com/56188936/172529337-059c6062-22d6-4920-ad5f-d823057e0b78.png">
 
 Các bạn nhớ để **Nimble** và **Quick** ở trong target **Tests** nha, cụ thể ở đây là "FinalProjectTests".
@@ -193,6 +194,7 @@ Số lượng items trong một section.
 Chúng ta dummyData với cái mảng musics có 2 items nên chúng ta "expect" là 2.
 
 Vậy nếu chúng ta expect là 1 thì điều gì xảy ra?
+
 <img width="681" alt="Screen Shot 2022-06-07 at 3 54 20 PM" src="https://user-images.githubusercontent.com/56188936/172529524-0b0398e5-8b40-415b-85eb-b568acee3b07.png">
 
 Nó sẽ test fail case này và còn gợi ý kết quả "expect" đúng.
@@ -216,6 +218,7 @@ Nó sẽ test fail case này và còn gợi ý kết quả "expect" đúng.
 ```
 
 Sau khi "**run**" test thì ta được kết quả như sau:
+
 <img width="369" alt="Screen Shot 2022-06-07 at 4 33 02 PM" src="https://user-images.githubusercontent.com/56188936/172529528-e6b62973-640b-4f0a-9560-d29d6489722a.png">
 
 Và đây là toàn bộ phần test cho các bạn có cái nhìn tổng quan hơn.
