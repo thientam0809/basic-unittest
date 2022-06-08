@@ -1,4 +1,16 @@
-##Hello Testing IOS
+# Hello Testing IOS
+
+Contents
+
+[1. Giới thiệu](## 1. Giới thiệu)
+
+[2. Thuật ngữ trong Testing](## 2. Thuật ngữ trong Testing)
+
+[2.1. Testing là gì?](### 2.1. Testing là gì?)
+
+
+
+## 1. Giới thiệu
 
 Hello mọi người! Chào mọi người đến với chuỗi bài về test trong iOS..
 
@@ -6,25 +18,27 @@ Mình là Tâm và những bài viết là những gì mà mình biết được
 
 Bắt đầu nào!!!
 
-###Testing là gì?
+## 2. Thuật ngữ trong Testing
+
+### 2.1. Testing là gì?
 
 Mọi người chắc ai cũng biết "test" là gì đúng không?
 
-Test là kiểm tra (theo google translate), thêm "ing" nữa là quá trình test, giai đoạn test.
+Test là kiểm thử (theo google translate), thêm "ing" nữa là quá trình test, giai đoạn test.
 
 Vậy trong Software development thì nó được định nghĩa như thế nào? 
 
 > Testing là một bước cực kì quan trọng trong quá trình phát triển phần mềm. Mục đích của testing là đảm bảo phần mềm chạy đúng yêu cầu của client hoặc yêu cầu đã được đặt ra từ trước.
 
-###Test in iOS
+### 2.2. Test in iOS
 
 Nếu bạn là người lần đầu viết trong trong Xcode thì chuỗi bài này sẽ giúp bạn hiểu được đâu đó về các bước phải làm để test được một app.
 
-#### UnitTest
+#### 2.2.1. UnitTest
 
 Lúc chém gió với bạn bè thì ta có thể nói:
 
-> Unit là đơn vị, test là kiểm tra. Vậy hiểu nôm na là kiểm tra từng đơn vị code.
+> Unit là đơn vị, test là kiểm thử. Vậy hiểu nôm na là kiểm thử từng đơn vị code.
 
 Còn lúc phỏng vấn thì :
 
@@ -33,7 +47,7 @@ Còn lúc phỏng vấn thì :
 > Đơn vị source code là phần nhỏ nhất có thể test được của chương trình.
 
 
-**Vậy tại sao phải viết UnitTest ?**
+## 3. Vậy tại sao phải viết UnitTest?
 
 1. **Bất kì bugs cũng sẽ tìm thấy dễ dàng và nhanh chóng.**
 
@@ -45,13 +59,12 @@ Còn lúc phỏng vấn thì :
     Khi mà unittest đã hoàn thành, nhiều bug được tìm thấy phase này và có thể ngăn chặn nó ở phase tiếp theo và giúp ta "including" sau khi release.
     
     Nó giúp tiết kiệm chi phí đồng thời cũng mang lại lợi ích cuối cùng cho các user.
-XCode cung cấp 3 kiểu test chính:
 
 3. **UnitTest cải thiện độ bao phủ của code (code coverage)** 
 
 Đó là những tác dụng chính của việc viết UnitTest.
 
-### Các loại UnitTest trong iOS.
+## 4. Các loại UnitTest trong iOS.
 
 Xcode cung cấp 3 kiểu test chính.
 
@@ -63,9 +76,9 @@ Xcode cung cấp 3 kiểu test chính.
 
 Những bài tiếp tiếp theo, mình sẽ tập trung vào Functional Test, còn 2 loại kia nếu có thời gian thì mình sẽ đi sâu vào nhé.
 
-### UnitTest with MVVM
+## 5. UnitTest with MVVM
 
-Tại sao thường sử dụng MVVM để viết unittest?
+### 5.1. Tại sao thường sử dụng MVVM để viết unittest?
 
 Những bạn nào đã từng làm dự án theo mô hình MVVM có thể hiểu nguyên nhân , còn bạn nào chưa biết thì đọc lại bài viết về mô hình MVVM nhé.
 
@@ -73,9 +86,10 @@ Những bạn nào đã từng làm dự án theo mô hình MVVM có thể hiể
 
 Nên nó có thể hỗ trợ viết unit test rất tốt.
 
-### How to create a file test
+### 5.2. How to create a file test
 
 **Step 1**:Vào thư mục Test -> NewFile -> Unit Test Case Class  -> Next
+
 <img width="718" alt="Screen Shot 2022-06-06 at 4 33 05 PM" src="https://user-images.githubusercontent.com/56188936/172529344-b03b19dc-1aeb-40d2-a669-5453f12650c7.png">
 
 
@@ -89,13 +103,14 @@ Nên nó có thể hỗ trợ viết unit test rất tốt.
 
 
 **Step 3**: Bước này rất quan trọng, các bạn nhớ tick Targets Tests nhé.
+
 <img width="645" alt="Screen Shot 2022-06-06 at 4 33 53 PM" src="https://user-images.githubusercontent.com/56188936/172529356-625cd33b-2fec-4c2f-857f-5585261b3585.png">
 
 Nếu bạn tạo theo thứ tự như trên thì Xcode thì mặc định tick cho bạn. 
 
 **Step 4**: Nhấn create thì ta đã tạo file test thành công.
 
-### How to Run the Test
+### 5.3. How to Run the Test
 
 Cách 1: Product -> Test hoặc nhấn Command-U.
 
@@ -107,6 +122,7 @@ Cách 3: Nhấn button bên trái class test.
 
 <img width="277" alt="Screen Shot 2022-06-08 at 10 50 49 AM" src="https://user-images.githubusercontent.com/56188936/172529534-dd59ac0d-58ea-45e7-80bf-75979e634339.png">
 
+## 6. Tạm kết
 Đây là bài hướng dẫn cơ bản đầu tiên để giới thiệu và khởi tạo các file test.
 Bài tiếp theo mình sẽ hướng dẫn viết test chi tiết hơn.
 
