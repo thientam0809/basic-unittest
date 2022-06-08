@@ -47,7 +47,7 @@ Còn lúc phỏng vấn thì :
 2. **UnitTest tiết kiệm thời gian và tiền bạc.**
 
     Khi mà unittest đã hoàn thành, nhiều bug được tìm thấy phase này và có thể ngăn chặn nó ở phase tiếp theo và giúp ta "including" sau khi release.
-    
+
     Nó giúp tiết kiệm chi phí đồng thời cũng mang lại lợi ích cuối cùng cho các user.
 
 3. **UnitTest cải thiện độ bao phủ của code (code coverage)** 
@@ -110,7 +110,7 @@ Cách 2: Click ở Test navigator
 
 Cách 3: Nhấn button bên trái class test.
 
-<img width="277" alt="Screen Shot 2022-06-08 at 10 50 49 AM" src="https://user-images.githubusercontent.com/56188936/172529534-dd59ac0d-58ea-45e7-80bf-75979e634339.png">
+<img width="500" alt="Screen Shot 2022-06-08 at 10 50 49 AM" src="https://user-images.githubusercontent.com/56188936/172529534-dd59ac0d-58ea-45e7-80bf-75979e634339.png">
 
 ## 6. Tạm kết
 Đây là bài hướng dẫn cơ bản đầu tiên để giới thiệu và khởi tạo các file test.
