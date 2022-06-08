@@ -1,15 +1,5 @@
 # Hello Testing IOS
 
-Contents
-
-[1. Giới thiệu](## 1. Giới thiệu)
-
-[2. Thuật ngữ trong Testing](## 2. Thuật ngữ trong Testing)
-
-[2.1. Testing là gì?](### 2.1. Testing là gì?)
-
-
-
 ## 1. Giới thiệu
 
 Hello mọi người! Chào mọi người đến với chuỗi bài về test trong iOS..
