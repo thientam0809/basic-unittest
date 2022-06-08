@@ -37,14 +37,14 @@ Còn lúc phỏng vấn thì :
 
 1. **Bất kì bugs cũng sẽ tìm thấy dễ dàng và nhanh chóng.**
 
-	Code mà được bao phủ bởi tests thì có độ tin tưởng cao hơn nhiều so với không có test. Nếu một feature bị thay đổi, coder sẽ nhận ra nguồn gốc của sự việc liền.
-	> Trường hợp này, coder sẽ tra "author" xem ai sửa code dẫn đến bug và "nói lời yêu thương" với đồng nghiệp =))
+    Code mà được bao phủ bởi tests thì có độ tin tưởng cao hơn nhiều so với không có test. Nếu một feature bị thay đổi, coder sẽ nhận ra nguồn gốc của sự việc liền.
+    > Trường hợp này, coder sẽ tra "author" xem ai sửa code dẫn đến bug và "nói lời yêu thương" với đồng nghiệp =))
 
 2. **UnitTest tiết kiệm thời gian và tiền bạc.**
 
-	Khi mà unittest đã hoàn thành, nhiều bug được tìm thấy phase này và có thể ngăn chặn nó ở phase tiếp theo và giúp ta "including" sau khi release.
-	
-	Nó giúp tiết kiệm chi phí đồng thời cũng mang lại lợi ích cuối cùng cho các user.
+    Khi mà unittest đã hoàn thành, nhiều bug được tìm thấy phase này và có thể ngăn chặn nó ở phase tiếp theo và giúp ta "including" sau khi release.
+    
+    Nó giúp tiết kiệm chi phí đồng thời cũng mang lại lợi ích cuối cùng cho các user.
 XCode cung cấp 3 kiểu test chính:
 
 3. **UnitTest cải thiện độ bao phủ của code (code coverage)** 
@@ -76,19 +76,20 @@ Nên nó có thể hỗ trợ viết unit test rất tốt.
 ### How to create a file test
 
 **Step 1**:Vào thư mục Test -> NewFile -> Unit Test Case Class  -> Next
-![Screen Shot 2022-06-06 at 4.33.05 PM](/Users/tam.nguyen7/Desktop/anh/Screen Shot 2022-06-06 at 4.33.05 PM.png)
+<img width="718" alt="Screen Shot 2022-06-06 at 4 33 05 PM" src="https://user-images.githubusercontent.com/56188936/172529344-b03b19dc-1aeb-40d2-a669-5453f12650c7.png">
 
 
 
 
 **Step 2**: Đặt tên cho file test.
-![Screen Shot 2022-06-06 at 4.33.26 PM](/Users/tam.nguyen7/Desktop/anh/Screen Shot 2022-06-06 at 4.33.26 PM.png)
+
+<img width="725" alt="Screen Shot 2022-06-06 at 4 33 26 PM" src="https://user-images.githubusercontent.com/56188936/172529351-9da8a781-b994-49d1-bdf1-7d7378abcb7d.png">
 Ở đây ta có viewModel có tên là "HomeViewModel" thì file test ta đặt "ViewModelTest" cho dễ phân biệt.
 
 
 
 **Step 3**: Bước này rất quan trọng, các bạn nhớ tick Targets Tests nhé.
-![Screen Shot 2022-06-06 at 4.33.53 PM](/Users/tam.nguyen7/Desktop/anh/Screen Shot 2022-06-06 at 4.33.53 PM.png)
+<img width="645" alt="Screen Shot 2022-06-06 at 4 33 53 PM" src="https://user-images.githubusercontent.com/56188936/172529356-625cd33b-2fec-4c2f-857f-5585261b3585.png">
 
 Nếu bạn tạo theo thứ tự như trên thì Xcode thì mặc định tick cho bạn. 
 
@@ -99,12 +100,14 @@ Nếu bạn tạo theo thứ tự như trên thì Xcode thì mặc định tick 
 Cách 1: Product -> Test hoặc nhấn Command-U.
 
 Cách 2: Click ở Test navigator
-![Screen Shot 2022-06-08 at 10.50.49 AM](/Users/tam.nguyen7/Desktop/Screen Shot 2022-06-08 at 10.50.24 AM.png)
+
+<img width="367" alt="Screen Shot 2022-06-08 at 10 50 24 AM" src="https://user-images.githubusercontent.com/56188936/172529532-0ddaf209-bb12-4ee6-96c4-5e76229ccbb2.png">'
+
 Cách 3: Nhấn button bên trái class test.
-![Screen Shot 2022-06-08 at 10.50.49 AM](/Users/tam.nguyen7/Desktop/Screen Shot 2022-06-08 at 10.50.49 AM.png)
+
+<img width="277" alt="Screen Shot 2022-06-08 at 10 50 49 AM" src="https://user-images.githubusercontent.com/56188936/172529534-dd59ac0d-58ea-45e7-80bf-75979e634339.png">
 
 Đây là bài hướng dẫn cơ bản đầu tiên để giới thiệu và khởi tạo các file test.
-
 Bài tiếp theo mình sẽ hướng dẫn viết test chi tiết hơn.
 
 Thank you.
