@@ -80,21 +80,19 @@ Nên nó có thể hỗ trợ viết unit test rất tốt.
 
 **Step 1**:Vào thư mục Test -> NewFile -> Unit Test Case Class  -> Next
 
-<img width="718" alt="Screen Shot 2022-06-06 at 4 33 05 PM" src="https://user-images.githubusercontent.com/56188936/172529344-b03b19dc-1aeb-40d2-a669-5453f12650c7.png">
-
-
+![image_002](../images/002.png)
 
 
 **Step 2**: Đặt tên cho file test.
 
-<img width="725" alt="Screen Shot 2022-06-06 at 4 33 26 PM" src="https://user-images.githubusercontent.com/56188936/172529351-9da8a781-b994-49d1-bdf1-7d7378abcb7d.png">
+
 Ở đây ta có viewModel có tên là "HomeViewModel" thì file test ta đặt "ViewModelTest" cho dễ phân biệt.
 
-
+![image_003](../images/003.png)
 
 **Step 3**: Bước này rất quan trọng, các bạn nhớ tick Targets Tests nhé.
 
-<img width="645" alt="Screen Shot 2022-06-06 at 4 33 53 PM" src="https://user-images.githubusercontent.com/56188936/172529356-625cd33b-2fec-4c2f-857f-5585261b3585.png">
+![image_004](../images/004.png)
 
 Nếu bạn tạo theo thứ tự như trên thì Xcode thì mặc định tick cho bạn. 
 
@@ -106,11 +104,11 @@ Cách 1: Product -> Test hoặc nhấn Command-U.
 
 Cách 2: Click ở Test navigator
 
-<img width="367" alt="Screen Shot 2022-06-08 at 10 50 24 AM" src="https://user-images.githubusercontent.com/56188936/172529532-0ddaf209-bb12-4ee6-96c4-5e76229ccbb2.png">'
+![image_006](../images/006.png)
 
 Cách 3: Nhấn button bên trái class test.
 
-<img width="500" alt="Screen Shot 2022-06-08 at 10 50 49 AM" src="https://user-images.githubusercontent.com/56188936/172529534-dd59ac0d-58ea-45e7-80bf-75979e634339.png">
+![image_007](../images/007.png)
 
 ## 6. Tạm kết
 Đây là bài hướng dẫn cơ bản đầu tiên để giới thiệu và khởi tạo các file test.
