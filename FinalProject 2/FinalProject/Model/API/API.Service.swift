@@ -27,4 +27,19 @@ class HomeService {
             }
         }
     }
+
+    class func getDataCovid(completion: @escaping Completion<[Covid]>) {
+        let urlString = "https://api.coronavirus.data.gov.uk/v1/data"
+        api.request(method: .get, urlString: urlString) { result in
+            switch result {
+            case .success(let data):
+                if let data = data as? JSObject, let items = data["data"] as? JSArray {
+                    let arrayCovid = Mapper<Covid>().mapArray(JSONArray: items)
+                    completion(.success(arrayCovid))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }

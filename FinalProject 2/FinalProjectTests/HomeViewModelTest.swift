@@ -8,14 +8,15 @@
 
 import Nimble
 import Quick
+import OHHTTPStubs
 
 @testable import FinalProject
 
-class HomeViewModelTest: QuickSpec { 
-    
+class HomeViewModelTest: QuickSpec {
+
     override func spec() {
         var viewModel: HomeViewModel!
-        
+
         describe("Test funcs homeScreen") {
             context("Test some funcs related to tableView") {
                 beforeEach {
@@ -32,7 +33,7 @@ class HomeViewModelTest: QuickSpec {
                 }
                 it("Test func viewModelForItem with row = 0, section = 0") {
                     expect(viewModel.viewModelForItem(at: IndexPath(row: 0, section: 0))).to(beAnInstanceOf(HomeCellViewModel.self))
-                    
+
                     // cach khac
                     expect(viewModel.viewModelForItem(at: IndexPath(row: 0, section: 0)).item?.name) == "tam"
                 }
@@ -49,7 +50,7 @@ class HomeViewModelTest: QuickSpec {
 
 // MARK: - Dummy Data
 extension HomeViewModelTest {
-    
+
     struct DummyData {
         static var dummyMusics: [Music] {
             var items: [Music] = []

@@ -1,38 +1,40 @@
 //
-//  HomeViewController.swift
+//  DetailViewController.swift
 //  FinalProject
 //
-//  Created by Tam Nguyen K.T. [7] VN.Danang on 6/6/22.
+//  Created by Tam Nguyen K.T. [7] VN.Danang on 6/9/22.
 //  Copyright © 2022 Asiantech. All rights reserved.
 //
 
 import UIKit
 
-final class HomeViewController: UIViewController {
+final class DetailViewController: UIViewController {
 
     // MARK: - IBOulets
     @IBOutlet private weak var tableView: UITableView!
 
     // MARK: - Properties
-    var viewModel = HomeViewModel()
+    var viewModel = DetailViewModel()
 
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configTableView()
-        getData()
+        getDataCovid()
     }
 
     // MARK: - Private methods
     private func configTableView() {
-        tableView.backgroundColor = .white
-        tableView.register(HomeCell.self)
+        tableView.register(DetailCell.self)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundColor = .white
     }
 
-    private func getData() {
-        viewModel.getData { [weak self] result in
+    private func getDataCovid() {
+        HUD.show()
+        viewModel.getDataCovid { [weak self] result in
+            HUD.dismiss()
             guard let this = self else { return }
             switch result {
             case .success:
@@ -48,27 +50,19 @@ final class HomeViewController: UIViewController {
     }
 }
 
-// MARK: - Extension UITableViewDelegate, UITableViewDataSource
-extension HomeViewController: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
-    }
-}
-
-// MARK: - Extension UITableViewDataSource
-extension HomeViewController: UITableViewDataSource {
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.numberOfSections()
-    }
-
+// MARK: - Extension UITableViewDelegate, UITalbeViewDataSource
+extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfItems(inSection: section)
     }
 
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeue(HomeCell.self)
+        let cell = tableView.dequeue(DetailCell.self)
         cell.viewModel = viewModel.viewModelForItem(at: indexPath)
         return cell
     }
