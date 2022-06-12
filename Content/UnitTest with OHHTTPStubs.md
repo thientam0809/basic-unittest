@@ -143,7 +143,7 @@ Còn trường hợp kiểm tra **case failure**, bạn chỉ cần đổi statu
 
  Từ đó, chúng ta test đủ cả 2 case success và failure để đảm bảo coverage toàn bộ. Chúng ta có thể control được được sự thay đổi server bằng một số thay đổi thôi qua trình giả lập stub. Còn nếu ta request trực tiếp thì đảm bảo với bạn nó vừa lâu, vừa gây spam và rất khó để handle để nó "**được lỗi**".
 
-## 2. Tạm kết.
+## 4. Tạm kết.
 
 Bài viết đã hướng dẫn bạn cách sử dụng thư viện OHHTTPStubs để test những funcs liên quan đến api.
 Và từ đó ta có thể kết hợp với bài trước và bài này để có thể test được toàn bộ một viewModel cụ thể nào đó.
