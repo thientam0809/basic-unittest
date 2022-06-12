@@ -124,7 +124,8 @@ Chúng ta tiếp tục sử dụng hàm **waitUntil** với param là **timeout*
 Như trong ví dụ:
 
 Nếu ta request lên server bằng cách gọi hàm **getDataCovid** cho đến khi quá thời gian 20s thì nó sẽ báo lỗi "timeout" như này.
-(chèn ảnh các thứ)
+
+![image_009](../images/009.png)
 
 Chúng ta phải gọi closure **done()** để báo rằng quá trình đợi đã được hoàn thành. Nếu không gọi thì nó sẽ chạy ở trong đó mãi và đến thời gian timeout thì nó sẽ báo lỗi như trên.
 

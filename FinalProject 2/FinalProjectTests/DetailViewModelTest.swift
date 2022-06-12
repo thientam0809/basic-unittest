@@ -44,7 +44,7 @@ class DetailViewModelTest: QuickSpec {
                 waitUntil(timeout: DispatchTimeInterval.seconds(20)) { done in
                     viewModel.getDataCovid { _ in
                         expect(viewModel.covids.count) == 0
-                        done()
+//                        done()
                     }
                 }
             }
