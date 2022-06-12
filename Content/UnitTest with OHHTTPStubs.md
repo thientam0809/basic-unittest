@@ -138,7 +138,7 @@ Chúng ta phải gọi closure **done()** để báo rằng quá trình đợi �
 Còn trường hợp kiểm tra **case failure**, bạn chỉ cần đổi status code từ 200 -> 400 để request của chúng ta thành bad request và kì vọng mảng **covids** sẽ là 0 hoặc rỗng.
 
 ```swift
-						expect(viewModel.covids.count) == 0
+                        expect(viewModel.covids.count) == 0
 ```
 
  Từ đó, chúng ta test đủ cả 2 case success và failure để đảm bảo coverage toàn bộ. Chúng ta có thể control được được sự thay đổi server bằng một số thay đổi thôi qua trình giả lập stub. Còn nếu ta request trực tiếp thì đảm bảo với bạn nó vừa lâu, vừa gây spam và rất khó để handle để nó "**được lỗi**".
