@@ -87,7 +87,7 @@ Hàm **stub** này sẽ trả về một HTTPStubResponse với các params:
                       let path: String! = OHPathForFile("detail.json", type(of: self))
   ```
 
-  (chèn ảnh các thứ) 
+  ![image_008](../images/008.png) 
 
 * **statusCode**:
   Chúng ta có thể control được mã trạng thái bằng cách nhập code mà mình mong muốn.
