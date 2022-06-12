@@ -135,7 +135,7 @@ Chúng ta phải gọi closure **done()** để báo rằng quá trình đợi �
 
  Ở đây chúng ta có dựa vào **detail.json** mà chúng ta đã tạo ra để dự đoán số item của mảng **covids** mà server trả về có đúng hay không.
 
-Còn trường hợp kiểm tra **case failure**, bạn chỉ cần đổi status code từ 200 -> 400 để request của chúng ta thành bad request và kì vọng mảng **covids** sẽ là 0 hoặc rỗng.
+Còn trường hợp kiểm tra **case failure**, bạn chỉ cần đổi status code từ 200 -> 400 để request của chúng ta thành bad request và kì vọng mảng **covids** sẽ là rỗng.
 
 ```swift
                         expect(viewModel.covids.count) == 0
