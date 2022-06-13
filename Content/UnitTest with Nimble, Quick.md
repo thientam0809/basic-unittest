@@ -199,8 +199,6 @@ Vậy nếu chúng ta expect là 1 thì điều gì xảy ra?
 
 Nó sẽ test fail case này và còn gợi ý kết quả "expect" đúng.
 
-> Nimble thông minh nhỉ =))
-
 ```swift
     func viewModelForItem(at indexPath: IndexPath) -> HomeCellViewModel {
         return HomeCellViewModel(item: musics[indexPath.row], index: indexPath.row)
