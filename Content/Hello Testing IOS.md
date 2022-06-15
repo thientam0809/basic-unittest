@@ -222,11 +222,11 @@ Ta thấy được điểm 3 nằm trong khoảng 0 .. 4.9 nên rõ ràng nó s�
 
 Tương tự với các case còn lại thì ta được kết quả test như sau:
 
-![image_011](../images/011.png
+![image_011](../images/011.png)
 
 Độ bao phủ đã "**xanh**" ở toàn bộ viewModel
 
-![image_012](../images/012.png
+![image_012](../images/012.png)
 
 ## 6. Tạm kết
 Đây là bài hướng dẫn cơ bản đầu tiên để giới thiệu và khởi tạo các file test và ví dụ cơ bản để các hiểu được các case test như thế nào.
