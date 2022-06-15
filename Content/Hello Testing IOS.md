@@ -70,7 +70,7 @@ Những bài tiếp tiếp theo, mình sẽ tập trung vào Functional Test, c�
 
 ### 5.1. Tại sao thường sử dụng MVVM để viết unittest?
 
-Những bạn nào đã từng làm dự án theo mô hình MVVM có thể hiểu nguyên nhân , còn bạn nào chưa biết thì đọc lại bài viết về mô hình MVVM nhé.
+Những bạn nào đã từng làm dự án theo mô hình MVVM có thể hiểu nguyên nhân , còn bạn nào chưa biết thì đọc lại bài viết về [mô hình MVVM ở đây](https://fxstudio.dev/basic-ios-tutorial-mvvm) nhé.
 
 > Mình giải thích ngắn gọn: Điểm mạnh của mô hình MVVM nằm ở ViewModel, nơi mà phân tích logic giữa View và Model. Nó giúp cho code được rành mạch và rõ ràng hơn.
 
@@ -115,8 +115,121 @@ Cách 3: Nhấn button bên trái class test.
 
 ![image_007](../images/007.png)
 
+
+
+### 5.4. Basic example
+
+Ở đây mình tạo một viewModel chứa một hàm xử lí logic cơ bản để giúp các bạn hiểu rõ nhất về test từng case nhỏ nhất nhé.
+
+Ta có code như sau:
+
+```swift
+enum Rank {
+    case bad
+    case middle
+    case good
+    case verygood
+    case error
+}
+
+class TutorialViewModel {
+
+    func rankStudent(point: Float) -> Rank {
+        switch point {
+        case 0.0 ... 4.9:
+            return .bad
+        case 5.0 ... 6.9:
+            return .middle
+        case 7.0 ... 8.4:
+            return .good
+        case 8.5 ... 10.0:
+            return .verygood
+        default:
+            return .error
+        }
+    }
+}
+```
+
+Nhìn vào hàm **rankStudent()** ta dễ dàng nhìn vào số case chúng ta cần phải test đúng không nào?
+
+Phụ thuộc vào điểm số thì chúng ta có tổng cộng 5 case cần phải test: bad, middle, good, verygood và error để nó có thể bao phủ toàn bộ logic của chúng ta.
+
+> Bắt đầu test nào !!
+
+```swift
+import Nimble
+import Quick
+
+@testable import FinalProject
+
+class TutorialViewModelTest: QuickSpec {
+    
+    override func spec() {
+        var viewModel: TutorialViewModel!
+        
+        beforeEach {
+            viewModel = TutorialViewModel()
+        }
+        it("Test case rank bad") {
+            expect(viewModel.rankStudent(point: 3)) == .bad
+            expect(viewModel.rankStudent(point: 3)).to(equal(.bad))
+        }
+        it("Test case rank middle") {
+            expect(viewModel.rankStudent(point: 6)) == .middle
+            expect(viewModel.rankStudent(point: 6)).toNot(equal(.bad))
+        }
+        it("Test case rank good") {
+            expect(viewModel.rankStudent(point: 8.2)) == .good
+            expect(viewModel.rankStudent(point: 8.2)).toNot(equal(.middle))
+        }
+        it("Test case rank verygood") {
+            expect(viewModel.rankStudent(point: 8.6)) == .verygood
+            expect(viewModel.rankStudent(point: 8.2)).toNot(equal(.middle))
+        }
+        it("Test case rank error") {
+            expect(viewModel.rankStudent(point: 11)) == .error
+        }
+        afterEach {
+            viewModel = nil
+        }
+    }
+}
+
+```
+
+Các bạn tạm bỏ qua các râu ria và setup các thứ nhé. Mình sẽ giải thích kĩ hơn về những thứ này ở bài tiếp theo khi chúng ta tìm hiểu về **Nimble/Quick.**
+
+Chúng ta tập trung vào các **expect** có trong code nhé.
+
+> expect là kì vọng, mong muốn, đoán trước (theo google transle)
+
+Vậy nên chúng ta cũng đoán được câu lệnh này **kiểm thử** các kết quả trả về có đúng với specs của client hay đơn giản là logic code của chúng ta.
+Ví dụ:
+
+Input: Học sinh được 3 điểm.
+
+Output: Đạt danh hiệu học sinh kém.
+
+```swift
+        it("Test case rank bad") {
+            expect(viewModel.rankStudent(point: 3)) == .bad
+            expect(viewModel.rankStudent(point: 3)).to(equal(.bad))
+        }
+```
+
+Ta thấy được điểm 3 nằm trong khoảng 0 .. 4.9 nên rõ ràng nó sẽ rời vào trường hợp .bad đúng không nào :D.
+
+Tương tự với các case còn lại thì ta được kết quả test như sau:
+
+![image_011](../images/011.png
+
+Độ bao phủ đã "**xanh**" ở toàn bộ viewModel
+
+![image_012](../images/012.png
+
 ## 6. Tạm kết
-Đây là bài hướng dẫn cơ bản đầu tiên để giới thiệu và khởi tạo các file test.
+Đây là bài hướng dẫn cơ bản đầu tiên để giới thiệu và khởi tạo các file test và ví dụ cơ bản để các hiểu được các case test như thế nào.
 Bài tiếp theo mình sẽ hướng dẫn viết test chi tiết hơn.
 
 Thank you.

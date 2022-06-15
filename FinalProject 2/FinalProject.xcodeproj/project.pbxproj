@@ -22,6 +22,8 @@
 		60A198CC2851D0E7007F361F /* DetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60A198CA2851D0E7007F361F /* DetailCell.xib */; };
 		60C58B08284DC1290055EF96 /* API.Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C58B07284DC1290055EF96 /* API.Service.swift */; };
 		60C58B0A284DDAEB0055EF96 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C58B09284DDAEB0055EF96 /* Music.swift */; };
+		60DF6A3D285A18A700EBAD86 /* TutorialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DF6A3C285A18A700EBAD86 /* TutorialViewModel.swift */; };
+		60E25234285A154500888DEA /* TutorialViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E25233285A154500888DEA /* TutorialViewModelTest.swift */; };
 		60E942EC284DBE980097AD3A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E942EB284DBE980097AD3A /* HomeViewModel.swift */; };
 		60E942F0284DBF5F0097AD3A /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E942EE284DBF5F0097AD3A /* HomeCell.swift */; };
 		60E942F1284DBF5F0097AD3A /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60E942EF284DBF5F0097AD3A /* HomeCell.xib */; };
@@ -83,6 +85,8 @@
 		60A198CA2851D0E7007F361F /* DetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailCell.xib; sourceTree = "<group>"; };
 		60C58B07284DC1290055EF96 /* API.Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.Service.swift; sourceTree = "<group>"; };
 		60C58B09284DDAEB0055EF96 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
+		60DF6A3C285A18A700EBAD86 /* TutorialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewModel.swift; sourceTree = "<group>"; };
+		60E25233285A154500888DEA /* TutorialViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewModelTest.swift; sourceTree = "<group>"; };
 		60E942EB284DBE980097AD3A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		60E942EE284DBF5F0097AD3A /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		60E942EF284DBF5F0097AD3A /* HomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
@@ -193,6 +197,14 @@
 			path = cellDetail;
 			sourceTree = "<group>";
 		};
+		60DF6A3B285A184400EBAD86 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				60DF6A3C285A18A700EBAD86 /* TutorialViewModel.swift */,
+			);
+			path = Tutorial;
+			sourceTree = "<group>";
+		};
 		60E942ED284DBF210097AD3A /* cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +297,7 @@
 		6AF60E252313C13600F5CBA2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				60DF6A3B285A184400EBAD86 /* Tutorial */,
 				60A198C12851D020007F361F /* Detail */,
 				60A198BE2851CFE1007F361F /* Home */,
 			);
@@ -355,6 +368,7 @@
 			children = (
 				60A198B5285193E6007F361F /* jsonTest */,
 				6AFD0319231375EF004940FA /* Info.plist */,
+				60E25233285A154500888DEA /* TutorialViewModelTest.swift */,
 				601552B1284F130A001E040C /* HomeViewModelTest.swift */,
 				608882412851F99B0092A219 /* DetailViewModelTest.swift */,
 			);
@@ -644,6 +658,7 @@
 				6AF613C12313C13A00F5CBA2 /* TableView.swift in Sources */,
 				6AF613C42313C13A00F5CBA2 /* TableCell.swift in Sources */,
 				6AF613C92313C13A00F5CBA2 /* ImageView.swift in Sources */,
+				60DF6A3D285A18A700EBAD86 /* TutorialViewModel.swift in Sources */,
 				6AF60E212313B9C000F5CBA2 /* CollectionExt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -653,6 +668,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				601552B2284F130A001E040C /* HomeViewModelTest.swift in Sources */,
+				60E25234285A154500888DEA /* TutorialViewModelTest.swift in Sources */,
 				608882422851F99B0092A219 /* DetailViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
