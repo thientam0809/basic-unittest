@@ -228,6 +228,16 @@ Tương tự với các case còn lại thì ta được kết quả test như s
 
 ![image_012](../images/012.png)
 
+Còn nếu chúng ta đổi kết quả dự đoán từ bad -> good thì:
+
+![image_013](../images/013.png)
+
+Hoặc thiếu một case test thì:
+
+![image_014](../images/014.png)
+
+Khi bạn run test thì nó vẫn thành công nhưng nó lại không bao phủ tất cả các case. Nên bạn phải thêm case còn thiếu để phủ sóng hết test case :D.
+
 ## 6. Tạm kết
 Đây là bài hướng dẫn cơ bản đầu tiên để giới thiệu và khởi tạo các file test và ví dụ cơ bản để các hiểu được các case test như thế nào.
 Bài tiếp theo mình sẽ hướng dẫn viết test chi tiết hơn.

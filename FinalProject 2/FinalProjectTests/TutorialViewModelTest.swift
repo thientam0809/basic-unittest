@@ -19,10 +19,10 @@ class TutorialViewModelTest: QuickSpec {
         beforeEach {
             viewModel = TutorialViewModel()
         }
-        it("Test case rank bad") {
-            expect(viewModel.rankStudent(point: 3)) == .bad
-            expect(viewModel.rankStudent(point: 3)).to(equal(.bad))
-        }
+//        it("Test case rank bad") {
+//            expect(viewModel.rankStudent(point: 3)) == .bad
+//            expect(viewModel.rankStudent(point: 3)).to(equal(.bad))
+//        }
         it("Test case rank middle") {
             expect(viewModel.rankStudent(point: 6)) == .middle
             expect(viewModel.rankStudent(point: 6)).toNot(equal(.bad))
