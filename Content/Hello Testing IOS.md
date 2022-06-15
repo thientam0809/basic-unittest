@@ -103,8 +103,13 @@ Nếu bạn tạo theo thứ tự như trên thì Xcode thì mặc định tick 
 Cách 1: Product -> Test hoặc nhấn Command-U.
 
 Cách 2: Click ở Test navigator
+* Success:
 
 ![image_006](../images/006.png)
+
+* Failure:
+
+![image_010](../images/010.png)
 
 Cách 3: Nhấn button bên trái class test.
 
