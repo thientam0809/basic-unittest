@@ -6,7 +6,13 @@ Hello mọi người! Chào mọi người đến với chuỗi bài về test t
 
 Mình là Tâm và những bài viết là những gì mà mình biết được, tìm hiểu được và đã trải qua được. Mình sẽ cố gắng truyền tải hết kiến thức và kinh nghiệm của mình cho các bạn mới bước vào nghề hoặc muốn tìm hiểu thêm, còn những người đã có nhiều năm kinh nghiệm thì cũng có thể đọc để coi thằng "ranh con" này viết cái gì, nếu đúng thì gật gù vỗ tay còn sai thì "tương tác" để mình có thể khắc phục nhé.
 
-Bắt đầu nào!!!
+Source code các ví dụ trong seri này các bạn có thể tham khảo ở [đây](https://github.com/thientam0809/basic-unittest).
+Trong đó có 3 file test chính:
+* TutorialViewModelTest: Basic test.
+* HomeViewModelTest: Test with Nimble/Quick.
+* DetailViewModelTest: Test with OHHTTPStubs liên quan đến case server.
+
+> Bắt đầu nào!!!
 
 ## 2. Thuật ngữ trong Testing
 
@@ -86,7 +92,7 @@ Nên nó có thể hỗ trợ viết unit test rất tốt.
 **Step 2**: Đặt tên cho file test.
 
 
-Ở đây ta có viewModel có tên là "HomeViewModel" thì file test ta đặt "ViewModelTest" cho dễ phân biệt.
+Ở đây ta có viewModel có tên là "TutorialViewModel" thì file test ta đặt "TutorialViewModel" cho dễ phân biệt.
 
 ![image_003](../images/003.png)
 
