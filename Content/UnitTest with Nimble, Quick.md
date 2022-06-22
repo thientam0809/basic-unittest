@@ -74,7 +74,7 @@ Cũng với ví dụ trên, trong một lớp học cần xác định giới t�
 Ví dụ:
 
 ```swift
-it("Test case rank bad") {
+		it("Test case rank bad") {
             expect(viewModel.rankStudent(point: 3)) == .bad
             expect(viewModel.rankStudent(point: 3)).to(equal(.bad))
         }
@@ -302,9 +302,9 @@ Bắt đầu test từng case nào.
 Số lượng section trong một tableView.
 
 ```swift
-func numberOfSections() -> Int {
-        return 1
-    }
+				func numberOfSections() -> Int {
+        				return 1
+    				}
 ```
 
 ```swift
@@ -319,9 +319,9 @@ Số lượng items trong một section.
 
 ```swift
 
-    func numberOfItems(inSection section: Int) -> Int {
-        return musics.count
-    }
+    			func numberOfItems(inSection section: Int) -> Int {
+        				return musics.count
+    				}
 ```
 
 ```swift
@@ -356,7 +356,7 @@ Nó sẽ test fail case này và còn gợi ý kết quả "expect" đúng.
 
 Sau khi "**run**" test thì ta được kết quả như sau:
 
-![image_006](../images/006.png)
+![image_015](../images/015.png)
 
 Và đây là toàn bộ phần test cho các bạn có cái nhìn tổng quan hơn.
 
