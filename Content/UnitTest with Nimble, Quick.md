@@ -74,7 +74,7 @@ Cũng với ví dụ trên, trong một lớp học cần xác định giới t�
 Ví dụ:
 
 ```swift
-		it("Test case rank bad") {
+it("Test case rank bad") {
             expect(viewModel.rankStudent(point: 3)) == .bad
             expect(viewModel.rankStudent(point: 3)).to(equal(.bad))
         }
@@ -302,7 +302,7 @@ Bắt đầu test từng case nào.
 Số lượng section trong một tableView.
 
 ```swift
-    func numberOfSections() -> Int {
+func numberOfSections() -> Int {
         return 1
     }
 ```
