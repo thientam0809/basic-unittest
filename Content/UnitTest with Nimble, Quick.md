@@ -77,7 +77,7 @@ Ví dụ:
 		it("Test case rank bad") {
             expect(viewModel.rankStudent(point: 3)) == .bad
             expect(viewModel.rankStudent(point: 3)).to(equal(.bad))
-        }
+         }
         it("Test case gender male") {
             expect(viewModel.identify(gender: .male)) == "have bird"
         }
