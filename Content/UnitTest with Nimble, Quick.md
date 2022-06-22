@@ -21,6 +21,8 @@ Nếu bỏ nhầm chổ khác thì lúc import nó ở file test sẽ không nh�
 
 ## 2. Giới thiệu Quick, Nimble
 
+### 2.1. Quick
+
 > *Quick là một testing framework, là nơi cung cấp những methods thuận tiện cho công việc viết test.*
 
 Nó sử dụng func **spec()** để định nghĩa toàn bộ code test.
@@ -34,30 +36,167 @@ Func **spec()** hỗ trợ cho việc chia nhiều sections.
 * **it**: được dùng để định nghĩa kết quả kì vọng cụ thể nhất. 
 
  Hiểu nôm na sử dụng **it** để test một case cụ thể nào đó trong một source code, có bao nhiêu case thì có bấy nhiêu **it**.
- 
- (chèn ảnh các thứ)
- 
+
+```swift
+enum Gender {
+    case male
+    case female
+}
+
+func identify(gender: Gender) -> String {
+    switch gender {
+    case .male { return "have bird" }
+    case .female { return "dont have bird :("}
+    }
+}
+```
+
  Như bạn thấy hàm này nó trả về kiểu string và có 2 case để nó trả về giá trị khác nhau nên khi test sử dụng 2 câu lệnh it để có thể "**bao phủ**" cả hàm trên.
 
 * **context**: được đùng để định nghĩa các "specific context" của một tác vụ nào đó mà bạn phải test.
 
  Các case khác nhau tạo ra một hàm xử lý, từ đó suy ra được nhiều "**it**" nó tạo ra một **context**.
- 
+
+Như ví dụ trên: 2 cái "**it**" tạo ra một **context**. Context này để giúp xác định giới tính của một người nào đó trong lớp học.
+
+> Tóm lại trong code, những case nào mà cùng liên quan đến một tác vụ, một chức năng nào đó thì gom lại thành 1 context.
+
 * **describle**: được dùng để định nghĩa nhưng tác vụ lớn hoặc hành vi mà bạn phải test
 
  Cũng tương tự như vậy, nhiều **context** sẽ tạo ra **describle**.
- 
-*  **beforeEach**: tương tự như setup vậy, chúng ta chuẩn bị dữ liệu test ở **beforeEach**.
 
-* **afterEach**: context nó chạy xong thì nó sẽ vào **afterEach** để config dữ liệu lại theo như mong muốn. 
- 
- 
+Cũng với ví dụ trên, trong một lớp học cần xác định giới tính(context) , xác định học lực(context), kiểm tra hành kiểm (context).. Nhiều cái thì chúng ta gom chúng vào một **describle**.
+
+> Vậy buộc phải dùng tất cả hả ?  Trả lời : Không.
+>
+> Vậy dùng toàn "it" được không? Trả lời:  Được.Nhưng...
+
+Ví dụ:
+
+```swift
+		it("Test case rank bad") {
+            expect(viewModel.rankStudent(point: 3)) == .bad
+            expect(viewModel.rankStudent(point: 3)).to(equal(.bad))
+        }
+        it("Test case gender male") {
+            expect(viewModel.identify(gender: .male)) == "have bird"
+        }
+        it("Test case rank middle") {
+            expect(viewModel.rankStudent(point: 6)) == .middle
+            expect(viewModel.rankStudent(point: 6)).toNot(equal(.bad))
+        }
+        it("Test case rank good") {
+            expect(viewModel.rankStudent(point: 8.2)) == .good
+            expect(viewModel.rankStudent(point: 8.2)).toNot(equal(.middle))
+        }
+        it("Test case rank verygood") {
+            expect(viewModel.rankStudent(point: 8.6)) == .verygood
+            expect(viewModel.rankStudent(point: 8.2)).toNot(equal(.middle))
+        }
+        it("Test case gender female") {
+            expect(viewModel.identify(gender: .female)) == "dont have bird :("
+        }
+        it("Test case rank error") {
+            expect(viewModel.rankStudent(point: 11)) == .error
+        }
+```
+
+```swift
+        context("Test rank") {
+            it("Test case rank bad") {
+                expect(viewModel.rankStudent(point: 3)) == .bad
+                expect(viewModel.rankStudent(point: 3)).to(equal(.bad))
+            }
+            it("Test case rank middle") {
+                expect(viewModel.rankStudent(point: 6)) == .middle
+                expect(viewModel.rankStudent(point: 6)).toNot(equal(.bad))
+            }
+            it("Test case rank good") {
+                expect(viewModel.rankStudent(point: 8.2)) == .good
+                expect(viewModel.rankStudent(point: 8.2)).toNot(equal(.middle))
+            }
+            it("Test case rank verygood") {
+                expect(viewModel.rankStudent(point: 8.6)) == .verygood
+                expect(viewModel.rankStudent(point: 8.2)).toNot(equal(.middle))
+            }
+            it("Test case rank error") {
+                expect(viewModel.rankStudent(point: 11)) == .error
+            }
+        }
+        context("Test gender") {
+            it("Test case gender male") {
+                expect(viewModel.identify(gender: .male)) == "have bird"
+            }
+            it("Test case gender female") {
+                expect(viewModel.identify(gender: .female)) == "dont have bird :("
+            }
+        }
+```
+
+Qua 2 cách viết trên ta thấy được cách nào cũng mang lại kết quả tối ưu là test pass.
+
+Nhưng khi người sau khi vào maintain hay lỡ có bị fail thì dev trố mắt nhìn để tìm kiếm đến đến case nào bị lỗi, func nào bị fail và nhìn vào chả có cảm tình gì cả.
+
+Theo bản thân mình nhận thấy, mô hình MVC, MVVM hay bất kì mô hình gì thì chúng ta cũng chia code ra để quản lý và maintain dễ hơn mà thôi.
+Thì viết test case cũng vậy, viết sao cho người sau vào đọc nói "dễ chịu", cấu trúc rõ ràng. Không phải test case func này rồi thích nhảy qua test case của func kia.
+
+> Tâm-Kun yêu cái đẹp!!!
+
+*  **beforeEach**: tương tự như setup vậy, chúng ta chuẩn bị dữ liệu test ở **beforeEach**.
+*  **afterEach**: context nó chạy xong thì nó sẽ vào **afterEach** để config dữ liệu lại theo như mong muốn.
+
+
+### 2.2. Nimble
+
 
 > Nimble cũng là một framework cung cấp rất nhiều các options để giúp thoả mãn được các "kì vọng" test.
 
-Keyword "***expect***" rất quan trọng. Nó thay thế cho XCTAssertion của hàng chính hãng XCTest
+Keyword "***expect***" trong **Nimble** rất quan trọng. Nó thay thế cho XCTAssertion của hàng chính hãng XCTest
 
-Expect là "kì vọng", có nghĩa là chúng ta kì vọng trường hợp đó output ra như ta mong đợi. Thư viện Nimble hỗ trợ ta rất nhiều để có thể "expect" được những giá trị, kiểu dữ liệu hay so sánh 2 đối tượng nào đó. Rất tiện lợi đúng không nào.
+Expect là "kì vọng", có nghĩa là chúng ta kì vọng trường hợp đó output ra như ta mong đợi. Thư viện Nimble hỗ trợ ta rất nhiều để có thể "expect" được những giá trị, kiểu dữ liệu hay so sánh 2 đối tượng nào đó ở nhiều trường hợp. Rất tiện lợi đúng không nào!
+Chúng ta tiếp tục xem Nimble hỗ trợ cho việc test về những gì nhé!
+
+#### 2.2.1.  Hỗ trợ kiểm thử trong quá trình đồng bộ. 
+
+```swift
+expect(1 + 1).to(equal(2)) // so sánh bằng
+expect(1.2).to(beCloseTo(1.1, within: 0.1)) // xấp xỉ trong giới hạn là bao nhiêu
+expect(3) > 2 // so sánh hơn, kém
+expect("seahorse").to(contain("sea")) // kiểm thử có chứa phần tử hay không?
+expect(["Atlantic", "Pacific"]).toNot(contain("Mississippi")) // kiểm thử không chứa phần tử hay không?
+expect(1 + 1).to(equal(3), description: "Make sure 1+1 = 2")
+// Bạn muốn add thêm thông tin đến khi test case đó bị sai thì thêm argument description.
+```
+
+#### 2.2.2. Hỗ trợ kiểm thử trong quá trình bất đồng bộ. 
+
+**Nimble** cung cấp ta 2 cách để nhận biết rằng code chúng ta đang chạy là bất đồng bộ. Đó là **toEventually** và **waitUntil**.
+
+* **toEventually**:
+
+  Có một điều mình rất thích ở Nimble nói chung và toEventually nói riêng là nó cho phép ta viết kì vọng test nhưng đang đọc tiếng anh.
+
+  > "*Expect value to eventually be this*"
+  >
+  > Giá trị mong đợi cuối cùng là ...
+
+  Có nghĩa là toEventually giúp bạn có thể dự đoán một thứ gì đó **"trong tương lai"**.
+
+  ```swift
+  DispatchQueue.main.async {
+      ocean.add("dolphins")
+      ocean.add("whales")
+  }
+  expect(ocean).toEventually(contain("dolphins", "whales"))
+  ```
+
+  Ví dụ trên có ý nghĩa như sau: 
+
+  Đối tượng **ocean** nó sẽ được đánh giá liên tục. Nếu nó đã từng chứa **dolphins** và **whales**, thì kì vọng sẽ pass. Ngược lại, nếu nó không chứa trong bất kì khoảng thời điểm nào bất chấp **ocean** được đánh giá liên tục thì kì vọng của chúng ta sẽ fail.
+
+* **waitUntil**: nó là một func được cung cấp bởi Nimble và hỗ trợ cho quá trình test bất đồng bộ.
+
+Phần này mình chỉ nói sơ qua để mọi người hiểu một phần nào đó, bài tiếp theo test bất đồng bộ liên quan đến server sẽ được nói rõ hơn.
 
 > Nimble lo tất cả :)) chúng ta chỉ cần dùng mà thôi :D
 

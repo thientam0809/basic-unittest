@@ -16,6 +16,11 @@ enum Rank {
     case error
 }
 
+enum Gender {
+    case male
+    case female
+}
+
 class TutorialViewModel {
 
     func rankStudent(point: Float) -> Rank {
@@ -30,6 +35,13 @@ class TutorialViewModel {
             return .verygood
         default:
             return .error
+        }
+    }
+
+    func identify(gender: Gender) -> String {
+        switch gender {
+        case .male:  return "have bird"
+        case .female:  return "dont have bird :("
         }
     }
 }
