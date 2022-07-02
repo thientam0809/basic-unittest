@@ -20,7 +20,10 @@ final class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configTableView()
-        getDataCovid()
+//        getDataCovid()
+        viewModel.handleStub {
+            self.getDataCovid()
+        }
     }
 
     // MARK: - Private methods

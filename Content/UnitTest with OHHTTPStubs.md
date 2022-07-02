@@ -6,7 +6,7 @@ Tiếp tục chuỗi bài liên quan đến test cùng fxstudio nào!
 
 Đối với **functional test** ngoài việc test các hàm xử lí logic, hàm để setup data .v.v thì chúng ta cũng phải test các funcs liên quan đến server, response data, kiểm tra request đó thành công hay thất bại. 
 
-### 1.1. Tại sao lúc test không nên phụ thuộc vào network?
+### 1.1. Tại sao lúc test không nên phụ thuộc vào server?
 
 Test phải đảm bảo nó nhanh, độc lập, có thể nhân rộng rà, tự verify được.
 Và việc phụ thuộc vào network đã vi phạm những quy tắc này.
@@ -17,7 +17,7 @@ Và việc phụ thuộc vào network đã vi phạm những quy tắc này.
 
   Có nghĩa là chúng ta sẽ bị phụ thuộc vào data trả về từ server. Bạn không thể đảm bảo data trả về sẽ đúng như những gì bạn kì vọng.
 
-  Test cũng có thể bị "**time out**" bởi vì network ở một lúc nào đó nó sẽ bị tắt nghẽn hoặc server sẽ trả về một data không đúng do phía backend chạy migration trên mô staging server khác mà không thông báo cho bạn.
+  Test cũng có thể bị "**time out**" bởi vì network ở một lúc nào đó nó sẽ bị tắt nghẽn hoặc server sẽ trả về một data không đúng do phía backend chạy migration trên một staging server khác mà không thông báo cho bạn.
 
 * Khó để test trường hợp error.
 
@@ -51,6 +51,20 @@ Mọi thứ vẫn làm như bài trước và mình chỉ bắt đầu hướng 
 * OHHTTPStubs: là một thư viện được thiết kế để "**stub**" cái request của bạn một cách dễ dàng.
 
 
+Vậy **stub** là gì?
+
+>Stub là một chương trình hoặc thành phần giả lập để kết nối với các công đoạn khác thành một khối hoàn chỉnh.
+
+Ví dụ: Chúng ta có 4 công đoạn, mà công đoạn đầu tiên phía BE làm chưa xong, thì phía Mobile phải làm sao?
+
+> Dev mobile đành ngồi chơi vậy!!!
+
+Cách giải quyết là ta tạo tạm thời "**một thành phần giả lập cho cái công đoạn chưa hoàn thành đó**" để những công đoạn tiếp theo diễn ra trôi chảy.
+
+> Stub kiểu như anh trai mưa vậy, cô gái mới cãi nhau người yêu cần một người lấp đầy khoảng trống thì stub sẽ xuất hiện, khi 2 người đó làm lành thì stub tiếp tục lặng yên nhìn 2 người đó yêu nhau :(.
+
+Còn đối với stub trong unittest thì với những lí do chúng ra không thể phụ thuộc quá vào server vì những lí do đã nêu trên, thì cần một "**stub**" để thay thế cho việc request đến server đó. 
+
 ### 3.2. Usage example.
 
 Để nhanh gọn mình sẽ code example một "stub" đơn giản rồi phân tích từng dòng một nhé.
@@ -65,7 +79,7 @@ Thư viện OHHTTPStubs hỗ trợ chúng ta một hàm **"stub"** để giả l
 
 Nó có parameter:
 
-* condition: so khớp điều kiện coi đúng không , nếu đúng thì thực hiện request.
+* **condition**: so khớp điều kiện coi đúng không , nếu đúng thì thực hiện request.
 
   Nó cung cấp cho ta các điều kiện như **isMethodGET()**,  **isMethodPOST()**, **isMethodPUT()**, **isHost**, **isPATH**.
 
@@ -102,11 +116,9 @@ Hàm **stub** này sẽ trả về một HTTPStubResponse với các params:
 
   Trong ví dụ này , thì chúng ta đang test 2 trường hợp cơ bản là success có data với statusCode là 200 và failure do bad request với status code là 400.
 
-* Header: Tuỳ server có yêu cầu hay không, cần thì thêm vào không cần thì cho nó **nil**.
+* **Header**: Tuỳ request đó có yêu cầu hay không, cần thì thêm vào không cần thì cho nó **nil**.
 
 Ok! Vậy là chúng ta vừa tạo một stub để chuẩn bị cho việc test server.
-
-> Stub ở đây nó như là một thành phần giả lập cho việc request lên server, giúp chúng ta tránh phải request trực tiếp với server với những lí do đã nêu ở đầu bài viết.
 
 Tiếp tục nào:
 
@@ -119,15 +131,15 @@ Tiếp tục nào:
                 }
 ```
 
-Chúng ta tiếp tục sử dụng hàm **waitUntil** với param là **timeout** để thực hiện việc "chờ bất đồng bộ cho đến khi quá trình **done()** hoàn tất hoặc đã vượt quá timeout mà chúng ta cho phép"
+Chúng ta tiếp tục sử dụng hàm **waitUntil** của thư viện **Nimble** ở bài trước với param là **timeout** để thực hiện việc "chờ bất đồng bộ cho đến khi quá trình **done()** hoàn tất hoặc đã vượt quá timeout mà chúng ta cho phép"
 
 Như trong ví dụ:
 
-Nếu ta request lên server bằng cách gọi hàm **getDataCovid** cho đến khi quá thời gian 20s thì nó sẽ báo lỗi "timeout" như này.
+Nếu ta request lên server bằng cách gọi hàm **getDataCovid** vì một lí do nào đó mà quá thời gian 20s thì nó sẽ báo lỗi "timeout" như này.
 
 ![image_009](../images/009.png)
 
-Chúng ta phải gọi closure **done()** để báo rằng quá trình đợi đã được hoàn thành. Nếu không gọi thì nó sẽ chạy ở trong đó mãi và đến thời gian timeout thì nó sẽ báo lỗi như trên.
+Chúng ta phải gọi closure **done()** để báo rằng quá trình đợi đã được hoàn thành. Nếu không gọi thì nó sẽ chạy ở trong đó mãi và đến thời gian timeout thì nó sẽ báo lỗi tương tự như trên.
 
 ```swift
                         expect(viewModel.covids.count) == 841
@@ -141,11 +153,102 @@ Còn trường hợp kiểm tra **case failure**, bạn chỉ cần đổi statu
                         expect(viewModel.covids.count) == 0
 ```
 
+Đây là phần code tổng quan cho các bạn dễ hình dung hơn:
+
+```swift
+override func spec() {
+        var viewModel: DetailViewModel!
+        context("Test func getdataCovid") {
+            beforeEach {
+                viewModel = DetailViewModel()
+            }
+            it("Test api success") {
+                stub(condition: isHost("api.coronavirus.data.gov.uk")) { _ in
+                    let path: String! = OHPathForFile("detail.json", type(of: self))
+                    return HTTPStubsResponse(fileAtPath: path, statusCode: 200, headers: nil)
+                }
+
+                waitUntil(timeout: DispatchTimeInterval.seconds(20)) { done in
+                    viewModel.getDataCovid { _ in
+                        expect(viewModel.covids.count) == 841
+                        done()
+                    }
+                }
+            }
+            
+            it("Test api failure") {
+                stub(condition: isHost("api.coronavirus.data.gov.uk")) { _ in
+                    let path: String! = OHPathForFile("detail.json", type(of: self))
+                    return HTTPStubsResponse(fileAtPath: path, statusCode: 400, headers: nil)
+                }
+
+                waitUntil(timeout: DispatchTimeInterval.seconds(20)) { done in
+                    viewModel.getDataCovid { _ in
+                        expect(viewModel.covids.count) == 0
+                        done()
+                    }
+                }
+            }
+            afterEach {
+                viewModel = nil
+            }
+        }
+    }
+```
+
  Từ đó, chúng ta test đủ cả 2 case success và failure để đảm bảo coverage toàn bộ. Chúng ta có thể control được được sự thay đổi server bằng một số thay đổi thôi qua trình giả lập stub. Còn nếu ta request trực tiếp thì đảm bảo với bạn nó vừa lâu, vừa gây spam và rất khó để handle để nó "**được lỗi**".
+
+### 3.3. Advanced
+
+Phần này không liên quan đến việc test nhưng có liên quan đến **OHHTTPStubs** thì mình cũng nói thêm những kinh nghiệm mà mình biết.
+
+Trong một dự án có nhiều lúc BE không thể chạy trước vì một số lí do nên phía FE hay Mobile không nên đợi BE deploy xong mới làm vì vô cùng mất thời gian, ảnh hưởng đến dự án chung nên chúng ta có thể tận dụng khả năng của "**stub**" để "chạy trước BE" để xem chúng ta kiểm tra:
+
+* Parse data đúng hay chưa?
+* UI khi hiển thị dữ liệu nó đúng chưa?
+* kiểm thử nhiều chức năng khác liên quan đến server.
+
+Các bước thực hiện như sau:
+
+**Step1**: Phía BE làm chưa xong nhưng chắc chắn có document json, xml example. Chúng ta hoàn toàn có thể copy đoạn json,xml mẫu đó xem như đó là response trả về và muốn response trả về như thế nào thì vào đó mà sửa (file tương tự như **detail.json** ở ví dụ trên).
+
+**Step2**: Ở ViewModel chúng ta viết một hàm handle **stub** như sau:
+
+```swift
+    // handle stub
+    func handleStub(completion: () -> Void) {
+        stub(condition: isHost("api.coronavirus.data.gov.uk")) { _ in
+            let path: String! = OHPathForFile("detail.json", type(of: self))
+            return HTTPStubsResponse(fileAtPath: path, statusCode: 200, headers: nil)
+            completion()
+        }
+    }
+```
+
+File json, xml example phía BE đưa cho thì bỏ vào **OHPathForFile** nhé.
+
+Step3: Ở viewController chúng ta thực thi như sau:
+
+```swift
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configTableView()
+//        getDataCovid()
+        viewModel.handleStub {
+            self.getDataCovid()
+        }
+    }
+```
+
+Chúng ta chạy hàm **getDataCovid()** sau khi hàm **handleStub()** hoàn thành xong để đảm bảo sẽ có reponse trả về như ta mong muốn.
+Còn đến khi nào phía BE họ deploy lên thì không cần dùng **stub** nữa, gọi trực tiếp như cũ.
+
+> Hãy trên trọng stub đi, lúc chúng ta khó khăn thì chỉ có stub giúp chúng ta, thế thôi!!
+
+Ví dụ trên request này đã có sẵn, đã được deploy. Còn khi các bạn làm một api mới hoàn toàn thì nhớ check document cho kĩ để thay đổi cái host hoặc check kĩ các json, xml của bạn đã đúng cấu trúc và các key đã đúng hay chưa. Nếu nó sai thì debug sửa lại cho đúng nhé :))
 
 ## 4. Tạm kết.
 
 Bài viết đã hướng dẫn bạn cách sử dụng thư viện OHHTTPStubs để test những funcs liên quan đến api.
 Và từ đó ta có thể kết hợp với bài trước và bài này để có thể test được toàn bộ một viewModel cụ thể nào đó.
-Bạn có thể checkout code example ở [đây](https://github.com/thientam0809/basic-unittest)
-Bài tiếp theo mình sẽ hướng dẫn các bạn sẽ coverage ở Xcode nhé.
+Bạn có thể checkout code example ở [đây](https://github.com/thientam0809/basic-unittest).
