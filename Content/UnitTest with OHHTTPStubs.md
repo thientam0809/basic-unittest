@@ -344,7 +344,6 @@ Còn đến khi nào phía BE họ deploy lên thì không cần dùng **stub** 
 
 **Step4:** Build xem thành quả của mình có đúng như kì vọng của mình đặt ra hay không?
 
-Và kết quả là :
 ![image_016](../images/016.png)
 
 Như vậy là chúng ta có thể hoàn toàn control được dữ liệu về như thế nào, mong muốn ra sao để đạt được múc đích của mình chỉ với **stub**.
