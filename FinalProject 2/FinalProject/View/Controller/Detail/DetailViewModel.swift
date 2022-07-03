@@ -8,7 +8,7 @@
 
 import Foundation
 import MVVM
-//import OHHTTPStubs
+import OHHTTPStubs
 
 final class DetailViewModel: ViewModel {
 
@@ -38,11 +38,11 @@ final class DetailViewModel: ViewModel {
     }
 
     // handle stub
-//    func handleStub(completion: () -> Void) {
-//        stub(condition: isHost("api.coronavirus.data.gov.uk")) { _ in
-//            let path: String! = OHPathForFile("detail.json", type(of: self))
-//            return HTTPStubsResponse(fileAtPath: path, statusCode: 200, headers: nil)
-//            completion()
-//        }
-//    }
+    func handleStub(completion: () -> Void) {
+        stub(condition: isHost("api.coronavirus.data.gov.uk")) { _ in
+            let path: String! = OHPathForFile("test.json", type(of: self))
+            return HTTPStubsResponse(fileAtPath: path, statusCode: 200, headers: nil)
+        }
+        completion()
+    }
 }

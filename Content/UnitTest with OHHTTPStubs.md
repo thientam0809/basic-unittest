@@ -59,13 +59,31 @@ Ví dụ: Chúng ta có 4 công đoạn, mà công đoạn đầu tiên phía BE
 
 > Dev mobile đành ngồi chơi vậy!!!
 
-Cách giải quyết là ta tạo tạm thời "**một thành phần giả lập cho cái công đoạn chưa hoàn thành đó**" để những công đoạn tiếp theo diễn ra trôi chảy.
+Cách giải quyết là chúng ta **create** tạm thời "**một thành phần giả lập cho cái công đoạn chưa hoàn thành đó**" để những công đoạn tiếp theo diễn ra trôi chảy.
 
 > Stub kiểu như anh trai mưa vậy, cô gái mới cãi nhau người yêu cần một người lấp đầy khoảng trống thì stub sẽ xuất hiện, khi 2 người đó làm lành thì stub tiếp tục lặng yên nhìn 2 người đó yêu nhau :(.
 
 Còn đối với stub trong unittest thì với những lí do chúng ra không thể phụ thuộc quá vào server vì những lí do đã nêu trên, thì cần một "**stub**" để thay thế cho việc request đến server đó. 
 
 ### 3.2. Usage example.
+
+Chúng ta có func liên quan đến api ở viewModel:
+
+```swift
+    func getDataCovid(completion: @escaping APICompletion) {
+        HomeService.getDataCovid { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .success(let items):
+                this.covids = items
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+```
+Nhìn vào func trên thì rõ ràng có 2 case chúng ta cần test là case success và failure.
 
 Để nhanh gọn mình sẽ code example một "stub" đơn giản rồi phân tích từng dòng một nhé.
 
@@ -103,6 +121,44 @@ Hàm **stub** này sẽ trả về một HTTPStubResponse với các params:
 
   ![image_008](../images/008.png) 
 
+  Trong file **detail.json** thì nó như thế này:
+
+  ```json
+  {
+      "length": 841,
+      "maxPageLimit": 2500,
+      "totalRecords": 841,
+      "data": [
+          {
+              "date": "2022-05-20",
+              "areaName": "United Kingdom",
+              "areaCode": "K02000001",
+              "confirmedRate": 33151.9,
+              "latestBy": 6338,
+              "confirmed": 22238713,
+              "deathNew": 87,
+              "death": 177977,
+              "deathRate": 265.3
+          },
+          {
+              "date": "2022-05-19",
+              "areaName": "United Kingdom",
+              "areaCode": "K02000001",
+              "confirmedRate": 33142.5,
+              "latestBy": 12208,
+              "confirmed": 22232377,
+              "deathNew": 169,
+              "death": 177890,
+              "deathRate": 265.2
+          }
+          ]
+  }
+
+
+  ```
+
+  Các bạn phải làm đúng cấu trúc và key của jsonObject để chúng ta có thể map data đúng nhé!
+
 * **statusCode**:
   Chúng ta có thể control được mã trạng thái bằng cách nhập code mà mình mong muốn.
 
@@ -125,13 +181,18 @@ Tiếp tục nào:
 ```swift
                 waitUntil(timeout: DispatchTimeInterval.seconds(20)) { done in
                     viewModel.getDataCovid { _ in
-                        expect(viewModel.covids.count) == 841
+                        expect(viewModel.covids.count) == 2
                         done()
                     }
                 }
 ```
 
-Chúng ta tiếp tục sử dụng hàm **waitUntil** của thư viện **Nimble** ở bài trước với param là **timeout** để thực hiện việc "chờ bất đồng bộ cho đến khi quá trình **done()** hoàn tất hoặc đã vượt quá timeout mà chúng ta cho phép"
+Chúng ta tiếp tục sử dụng hàm **waitUntil** của thư viện **Nimble** ở bài trước với param là **timeout** để thực hiện việc "chờ bất đồng bộ cho đến khi quá trình **done()** hoàn tất hoặc đã vượt quá timeout mà chúng ta cho phép".
+Sau khi gọi hàm **getDataCovid()** thì chúng ta kiểm thử output có đúng như kì vọng không?
+Thì ở file json chúng ta thấy rõ ràng là có 2 object **Covid** nên ta kì vọng mảng **covids** bằng 2.
+Nếu không đúng thì thì có 2 nguyên nhân:
+1. File json chúng ta tạo ra có vấn đề, cấu trúc nó k đúng hoặc key bị sai.
+2. Timeout.
 
 Như trong ví dụ:
 
@@ -141,13 +202,14 @@ Nếu ta request lên server bằng cách gọi hàm **getDataCovid** vì một 
 
 Chúng ta phải gọi closure **done()** để báo rằng quá trình đợi đã được hoàn thành. Nếu không gọi thì nó sẽ chạy ở trong đó mãi và đến thời gian timeout thì nó sẽ báo lỗi tương tự như trên.
 
+* **case Success:**
 ```swift
-                        expect(viewModel.covids.count) == 841
+                        expect(viewModel.covids.count) == 2
 ```
 
  Ở đây chúng ta có dựa vào **detail.json** mà chúng ta đã tạo ra để dự đoán số item của mảng **covids** mà server trả về có đúng hay không.
-
-Còn trường hợp kiểm tra **case failure**, bạn chỉ cần đổi status code từ 200 -> 400 để request của chúng ta thành bad request và kì vọng mảng **covids** sẽ là rỗng.
+* **case Failure:**
+Bạn chỉ cần đổi status code từ **200** -> **400** để request của chúng ta thành bad request và kì vọng mảng **covids** sẽ là rỗng.
 
 ```swift
                         expect(viewModel.covids.count) == 0
@@ -170,7 +232,7 @@ override func spec() {
 
                 waitUntil(timeout: DispatchTimeInterval.seconds(20)) { done in
                     viewModel.getDataCovid { _ in
-                        expect(viewModel.covids.count) == 841
+                        expect(viewModel.covids.count) == 2
                         done()
                     }
                 }
@@ -212,22 +274,57 @@ Các bước thực hiện như sau:
 
 **Step1**: Phía BE làm chưa xong nhưng chắc chắn có document json, xml example. Chúng ta hoàn toàn có thể copy đoạn json,xml mẫu đó xem như đó là response trả về và muốn response trả về như thế nào thì vào đó mà sửa (file tương tự như **detail.json** ở ví dụ trên).
 
+```json
+{
+    "length": 841,
+    "maxPageLimit": 2500,
+    "totalRecords": 841,
+    "data": [
+        {
+            "date": "2022-05-20",
+            "areaName": "TP Da Nang",
+            "areaCode": "K02000001",
+            "confirmedRate": 123,
+            "latestBy": 0,
+            "confirmed": 4,
+            "deathNew": 87,
+            "death": 3,
+            "deathRate": 265.3
+        },
+        {
+            "date": "2022-05-19",
+            "areaName": "Monstar-lab",
+            "areaCode": "K02000001",
+            "confirmedRate": 3445,
+            "latestBy": 12208,
+            "confirmed": 555,
+            "deathNew": 169,
+            "death": 177890,
+            "deathRate": 265.2
+        }
+        ]
+}
+
+```
+
+Ở đây mình tạo file **test.json** và thay đổi key "**areaName**" theo yêu cầu của dự án hay để test một số case đặc biệt nào đó.
+
 **Step2**: Ở ViewModel chúng ta viết một hàm handle **stub** như sau:
 
 ```swift
-    // handle stub
+        // handle stub
     func handleStub(completion: () -> Void) {
         stub(condition: isHost("api.coronavirus.data.gov.uk")) { _ in
-            let path: String! = OHPathForFile("detail.json", type(of: self))
+            let path: String! = OHPathForFile("test.json", type(of: self))
             return HTTPStubsResponse(fileAtPath: path, statusCode: 200, headers: nil)
-            completion()
         }
+        completion()
     }
 ```
 
 File json, xml example phía BE đưa cho thì bỏ vào **OHPathForFile** nhé.
 
-Step3: Ở viewController chúng ta thực thi như sau:
+**Step3:** Ở viewController chúng ta thực thi như sau:
 
 ```swift
     override func viewDidLoad() {
@@ -244,6 +341,13 @@ Chúng ta chạy hàm **getDataCovid()** sau khi hàm **handleStub()** hoàn th�
 Còn đến khi nào phía BE họ deploy lên thì không cần dùng **stub** nữa, gọi trực tiếp như cũ.
 
 > Hãy trên trọng stub đi, lúc chúng ta khó khăn thì chỉ có stub giúp chúng ta, thế thôi!!
+
+**Step4:** Build xem thành quả của mình có đúng như kì vọng của mình đặt ra hay không?
+
+Và kết quả là :
+![image_016](../images/016.png)
+
+Như vậy là chúng ta có thể hoàn toàn control được dữ liệu về như thế nào, mong muốn ra sao để đạt được múc đích của mình chỉ với **stub**.
 
 Ví dụ trên request này đã có sẵn, đã được deploy. Còn khi các bạn làm một api mới hoàn toàn thì nhớ check document cho kĩ để thay đổi cái host hoặc check kĩ các json, xml của bạn đã đúng cấu trúc và các key đã đúng hay chưa. Nếu nó sai thì debug sửa lại cho đúng nhé :))
 

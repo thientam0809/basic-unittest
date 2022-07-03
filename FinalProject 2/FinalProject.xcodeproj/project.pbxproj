@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,7 @@
 		606200E72851D630005DD949 /* DetailCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606200E62851D630005DD949 /* DetailCellViewModel.swift */; };
 		606200EA2851EBB8005DD949 /* Covid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606200E92851EBB8005DD949 /* Covid.swift */; };
 		608882422851F99B0092A219 /* DetailViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608882412851F99B0092A219 /* DetailViewModelTest.swift */; };
+		608BFDFC2871AB8800EF1B89 /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 608BFDFB2871AB8800EF1B89 /* test.json */; };
 		60A198B828519443007F361F /* detail.json in Resources */ = {isa = PBXBuildFile; fileRef = 60A198B728519443007F361F /* detail.json */; };
 		60A198C42851D068007F361F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A198C22851D068007F361F /* DetailViewController.swift */; };
 		60A198C52851D068007F361F /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60A198C32851D068007F361F /* DetailViewController.xib */; };
@@ -77,6 +78,7 @@
 		606200E62851D630005DD949 /* DetailCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCellViewModel.swift; sourceTree = "<group>"; };
 		606200E92851EBB8005DD949 /* Covid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Covid.swift; sourceTree = "<group>"; };
 		608882412851F99B0092A219 /* DetailViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModelTest.swift; sourceTree = "<group>"; };
+		608BFDFB2871AB8800EF1B89 /* test.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
 		60A198B728519443007F361F /* detail.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = detail.json; sourceTree = "<group>"; };
 		60A198C22851D068007F361F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		60A198C32851D068007F361F /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				60A198C22851D068007F361F /* DetailViewController.swift */,
 				60A198C32851D068007F361F /* DetailViewController.xib */,
 				60A198C62851D078007F361F /* DetailViewModel.swift */,
+				608BFDFB2871AB8800EF1B89 /* test.json */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 				60A198CC2851D0E7007F361F /* DetailCell.xib in Resources */,
 				60A198C52851D068007F361F /* DetailViewController.xib in Resources */,
 				60E942F1284DBF5F0097AD3A /* HomeCell.xib in Resources */,
+				608BFDFC2871AB8800EF1B89 /* test.json in Resources */,
 				603792B7284DBA0F006FF688 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -497,36 +501,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-FinalProject/Pods-FinalProject-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/MVVM-Swift/MVVM.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftUtils/SwiftUtils.framework",
-				"${BUILT_PRODUCTS_DIR}/SwifterSwift/SwifterSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-FinalProject/Pods-FinalProject-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MVVM.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftUtils.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwifterSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-FinalProject/Pods-FinalProject-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FinalProject/Pods-FinalProject-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FinalProject/Pods-FinalProject-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6988773333837795309382C3 /* [CP] Embed Pods Frameworks */ = {
@@ -535,24 +518,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-FinalProjectTests/Pods-FinalProjectTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
-				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
-				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-FinalProjectTests/Pods-FinalProjectTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-FinalProjectTests/Pods-FinalProjectTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FinalProjectTests/Pods-FinalProjectTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FinalProjectTests/Pods-FinalProjectTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6AFD032323139854004940FA /* Swift Lint */ = {

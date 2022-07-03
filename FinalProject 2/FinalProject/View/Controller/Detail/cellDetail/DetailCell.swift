@@ -24,7 +24,7 @@ final class DetailCell: UITableViewCell {
     // MARK: - Life cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        backgroundColor = .systemGray
     }
 
     // MARK: - Private methods
